@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./templates/head.ejs") %>
+<body style="background-color: #ccc; display: flex; justify-content: center; align-items: center; height: 90vh;">
+    <%- include("./templates/flash.ejs", {flash}) %>
+    <form action="/register" method="post">
+        <h1>فرم افزودن کاربر</h1>
+        <div style="display: flex; flex-direction: column;">
+            <input type="text" name="username" placeholder="نام کاربری">
+            <input type="password" name="password" placeholder="کلمه عبور">
+            <input type="password" name="mainPassword" placeholder="کلمه عبور وبسایت">
+        </div>
+        <button type="submit">افزودن</button>
+    </form>
+</body>
+</html>

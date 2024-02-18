@@ -1,7 +1,8 @@
 {
     "app" : {
         "port" : PORT,
-        "secret" : SECRET
+        "secret" : SECRET,
+        "websitePassword" : "as"
     },
 
     "db" : {
