@@ -1,0 +1,12 @@
+{
+    "app" : {
+        "port" : PORT,
+        "secret" : SECRET
+    },
+
+    "db" : {
+        "username" : USERNAME,
+        "password" : PASSWORD,
+        "name" : NAME  
+    }
+}
