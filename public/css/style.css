@@ -1,0 +1,91 @@
+@font-face {
+    font-family: sans;
+    src: url("../fonts/sans/sans.woff2");
+}
+
+@font-face {
+    font-family: sans;
+    src: url("../fonts/sans/sansbold.woff2");
+    font-weight: bold;
+}
+
+*{
+    padding: 0;
+    margin : 0;
+    font-family: "sans";
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+form{
+    background-color: white; 
+    border: 2px solid rgb(115, 196, 243); 
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center;
+    flex-direction: column; 
+    padding: 15px; 
+    border-radius: 10px;
+    width: 25%;
+    height: 40vh;
+}
+
+input{
+    background-color: white;
+    border: 2px solid rgb(115, 196, 243);
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    width: 60%;
+    outline: none;
+}
+
+form > div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    background-color: white;
+    border: 2px solid rgb(115, 196, 243);
+    width: 100px;
+    height: 40px;
+    margin: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+button:hover{
+    background-color: rgb(115, 196, 243);
+    color: white;
+}
+
+.flash{
+    padding: 5px 10px;
+    border-radius: 10px;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
+
+.flash-error{
+    background-color: rgba(255, 0, 0, .2);
+    border: 2px solid rgb(209, 29, 29);
+    color: darkred;
+}
+
+.flash-warning{
+    background-color: rgba(255, 255, 0, 0.2);
+    border: 2px solid rgb(179, 179, 6);
+    color: rgb(99, 99, 0);
+}
