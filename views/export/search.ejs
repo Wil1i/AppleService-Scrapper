@@ -15,6 +15,9 @@
             <a href="" id="downloadFile" download> <button class="btn" style="width: 200px;" aria-disabled="true" id="excel">دانلود فایل اکسل</button> </a>
             <button class="btn" style="width: 200px" onclick="startExport()">شروع خروجی گرفتن</button>
         </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <button class="btn" style="width: 200px" onclick="checkConnection()">چک کردن کانکشن</button>
+        </div>
     </div>
 
     <script src="/scripts/axios.min.js"></script>
@@ -33,6 +36,11 @@
             productCount.innerHTML = `تعداد محصولات یافت شده : ${scrapped.productsCount}`
             pageCount.innerHTML = `تعداد صفحه های یافت شده : ${scrapped.pagesCount}`
             downloadFile.href = `/files/${scrapped.fileName}`
+        }
+
+        async function checkConnection() {
+            const req = await axios.get("http://<%= ip %>/connection/check")
+            console.log(req.status)
         }
     </script>
 </body>

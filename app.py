@@ -17,3 +17,7 @@ def category():
     link = request.json.link
     scrapped = category.startScrap(link)
     return scrapped
+
+@app.get("/connection/check")
+def check_connection():
+    return {"ok" : True}
