@@ -89,3 +89,21 @@ button:hover{
     border: 2px solid rgb(179, 179, 6);
     color: rgb(99, 99, 0);
 }
+
+.link{
+    padding: 7px;
+    font-size: 14px;
+    border-radius: 10px;
+    transition: all .2s ease-in-out;
+    min-width: 150px;
+    text-align: center;
+}
+
+.link:hover{
+    background-color: rgb(167, 215, 247);
+}
+
+.line{
+    color: rgb(115, 196, 243);
+    margin: 0 17px;
+}
