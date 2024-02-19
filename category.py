@@ -39,7 +39,7 @@ def startScrap(url):
         for product_tag in products_meta:
 
             product = product_tag.find('h3', attrs={'class' : 'h3 product-title'}).find('a')
-            product_link = f"{product.get("href").split(".html")[0]}.html"
+            product_link = f"{product.get('href').split('.html')[0]}.html"
 
             if not product_link in links:
                 product_price = product_tag.find('span', attrs={'itemprop' : 'price'})
@@ -53,7 +53,7 @@ def startScrap(url):
 
                 try:
                     if int( product_link.split("/")[4].split("-")[0] ) and int( product_link.split("/")[4].split("-")[1] ):
-                        product_link = product_link.replace(f"{product_link.split("/")[4].split("-")[1]}-", "")
+                        product_link = product_link.replace(f"{product_link.split('/')[4].split('-')[1]}-", "")
                 except:
                     pass
 
