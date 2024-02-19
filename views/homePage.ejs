@@ -5,7 +5,9 @@
     <%- include("./templates/flash.ejs", {flash}) %>
     <%- include("./templates/header.ejs") %>
 
-    <h1 dir="rtl" style="text-align: center;font-size: 50px;color: rgb(88, 183, 221);">خوش آمدید!</h1>
-    <p style="text-align: center; font-size: 25px; color: rgb(88, 183, 221); font-weight: bold;"><%= user.username %></p>
+    <div style="height: 80vh; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <h1 dir="rtl" style="text-align: center;font-size: 60px;color: rgb(88, 183, 221);">خوش آمدید!</h1>
+        <p style="text-align: center; font-size: 25px; color: white; font-weight: bold; background-color: rgb(88, 183, 221); border-radius: 10px; padding: 5px 15px;"><%= user.username %></p>
+    </div>
 </body>
 </html>
