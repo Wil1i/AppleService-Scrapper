@@ -1,0 +1,12 @@
+form{
+    background-color: white; 
+    border: 2px solid rgb(115, 196, 243); 
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center;
+    flex-direction: column; 
+    padding: 15px; 
+    border-radius: 10px;
+    width: 25%;
+    height: 40vh;
+}

@@ -22,6 +22,9 @@ app.set("views", __dirname + "/views")
 
 require("./utils/passport")
 
+const exportRoutes = require("./routes/export")
+app.use("/export", exportRoutes)
+
 const indexRoutes = require("./routes/index")
 app.use("/", indexRoutes)
 

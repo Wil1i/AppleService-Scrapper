@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fa">
+<%- include("../templates/head.ejs") %>
+<body>
+    <%- include("../templates/header.ejs") %>
+    <%- include("../templates/flash.ejs") %>
+
+    <div style="height: 70vh; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 30px;">
+        <input type="text" style="width: 600px; padding: 20px 30px;" placeholder="لینک دسته‌بندی" id="link">
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <p class="info" dir="rtl" id="product-count">تعداد محصولات یافت شده : -</p>
+            <p class="info" dir="rtl" id="page-count">تعداد صفحات یافت شده : -</p>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <button class="btn" style="width: 200px;" aria-disabled="true">دانلود فایل اکسل</button>
+            <button class="btn" style="width: 200px">شروع خروجی گرفتن</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -24,19 +24,6 @@ a{
     color: black;
 }
 
-form{
-    background-color: white; 
-    border: 2px solid rgb(115, 196, 243); 
-    display: flex; 
-    justify-content: space-around; 
-    align-items: center;
-    flex-direction: column; 
-    padding: 15px; 
-    border-radius: 10px;
-    width: 25%;
-    height: 40vh;
-}
-
 input{
     background-color: white;
     border: 2px solid rgb(115, 196, 243);
@@ -45,6 +32,13 @@ input{
     border-radius: 10px;
     width: 60%;
     outline: none;
+    transition: all .2s ease-in-out;
+    color: rgb(47, 166, 235);
+}
+
+input:focus{
+    background-color: rgb(115, 196, 243);
+    color: white;
 }
 
 form > div{
@@ -106,4 +100,56 @@ button:hover{
 .line{
     color: rgb(115, 196, 243);
     margin: 0 17px;
+}
+
+input:-moz-placeholder {
+    text-align: right;
+    color: rgb(115, 196, 243);
+}
+input:-ms-input-placeholder {
+    text-align: right;
+    color: rgb(115, 196, 243);
+}
+input::-webkit-input-placeholder {
+    text-align: right;
+    color: rgb(115, 196, 243);
+}
+
+input:focus:-moz-placeholder {
+    color: white;
+}
+input:focus:-ms-input-placeholder {
+    color: white;
+}
+input:focus::-webkit-input-placeholder {
+    color: white;
+}
+
+.info{
+    margin: 10px; 
+    padding: 10px 20px; 
+    background-color: rgb(194, 228, 250);
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.btn{
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: rgba(0, 225, 0, .2);
+    color: rgb(10, 109, 10);
+    transition: all .2s ease-in-out;
+    border-radius: 15px;
+    font-size: 14px;
+    border: 2px solid rgba(0, 225, 0, .2);
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn:hover{
+    color: rgb(31, 187, 31);
+    background-color: transparent;
 }
