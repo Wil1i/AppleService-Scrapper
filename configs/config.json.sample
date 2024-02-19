@@ -2,7 +2,8 @@
     "app" : {
         "port" : PORT,
         "secret" : SECRET,
-        "websitePassword" : "as"
+        "websitePassword" : "as",
+        "ip" : "localhost"
     },
 
     "db" : {

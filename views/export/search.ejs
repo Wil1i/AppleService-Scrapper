@@ -26,7 +26,7 @@
         var downloadFile = document.getElementById("downloadFile")
 
         async function startExport () {
-            const scrapped = await axios.post("http://localhost:5000/export/category", {
+            const scrapped = await axios.post("http://<%= ip %>/export/search", {
                 link : link.value
             })
 
