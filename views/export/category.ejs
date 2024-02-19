@@ -12,9 +12,28 @@
             <p class="info" dir="rtl" id="page-count">تعداد صفحات یافت شده : -</p>
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
-            <button class="btn" style="width: 200px;" aria-disabled="true">دانلود فایل اکسل</button>
-            <button class="btn" style="width: 200px">شروع خروجی گرفتن</button>
+            <a href="" id="downloadFile" download> <button class="btn" style="width: 200px;" aria-disabled="true" id="excel">دانلود فایل اکسل</button> </a>
+            <button class="btn" style="width: 200px" onclick="startExport()">شروع خروجی گرفتن</button>
         </div>
     </div>
+
+    <script src="/scripts/axios.min.js"></script>
+    <script>
+        var link = document.getElementById("link")
+        var productCount = document.getElementById("product-count")
+        var pageCount = document.getElementById("page-count")
+        var excelBtn = document.getElementById("excel")
+        var downloadFile = document.getElementById("downloadFile")
+
+        async function startExport () {
+            const scrapped = await axios.post("http://localhost:5000/export/category", {
+                link : link.value
+            })
+
+            productCount.innerHTML = `تعداد محصولات یافت شده : ${scrapped.productsCount}`
+            pageCount.innerHTML = `تعداد صفحه های یافت شده : ${scrapped.pagesCount}`
+            downloadFile.href = `/files/${scrapped.fileName}`
+        }
+    </script>
 </body>
 </html>
