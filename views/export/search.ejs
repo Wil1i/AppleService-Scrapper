@@ -6,6 +6,7 @@
     <%- include("../templates/flash.ejs") %>
 
     <div style="height: 70vh; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 30px;">
+	<h1 id="status" dir="rtl">بیکار!</h1>
         <input type="text" style="width: 600px; padding: 20px 30px;" placeholder="لینک جستجو شده" id="link">
         <div style="display: flex; justify-content: center; align-items: center;">
             <p class="info" dir="rtl" id="product-count">تعداد محصولات یافت شده : -</p>
@@ -24,12 +25,14 @@
         var pageCount = document.getElementById("page-count")
         var excelBtn = document.getElementById("excel")
         var downloadFile = document.getElementById("downloadFile")
+	var statusTag = document.getElementById("status")
 
         async function startExport () {
+	    statusTag.innerHTML = "درحال انجام کار..."
             const scrapped = await axios.post("http://<%= ip %>/scrapper/export/search", {
                 link : link.value
             })
-
+	    statusTag.innerHTML = "بیکار!"
             productCount.innerHTML = `تعداد محصولات یافت شده : ${scrapped.data.productsCount}`
             pageCount.innerHTML = `تعداد صفحه های یافت شده : ${scrapped.data.pagesCount}`
             downloadFile.href = `/files/${scrapped.data.fileName}`
