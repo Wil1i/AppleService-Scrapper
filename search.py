@@ -1,15 +1,14 @@
-import requests, datetime
+import requests, datetime, os
 from bs4 import BeautifulSoup
 from pandas import DataFrame
 
 def startScrap(url):
-    print(1)
     # check if url entered with correct format
     if not url.startswith("https://"):
-        return {"ok" : False, "message" : "لینک وارد شده نامعتبر می‌باشد."}
+        return {"ok" : False, "err" : "لینک وارد شده نامعتبر می‌باشد."}
 
     if "?page=" in url:
-        return {"ok" : False, "message" : "لینک وارد شده دارای صفحه می‌باشد."}
+        return {"ok" : False, "err" : "لینک وارد شده دارای صفحه می‌باشد."}
 
 
     page_number = 1
@@ -27,7 +26,6 @@ def startScrap(url):
     date = str( datetime.datetime.combine(today, datetime.time(date.hour, date.minute)) )[:-3].replace(" ", " | ")
 
     while True:
-        print(2)
         # get products on current page
         page = requests.get(f"{url}&page={page_number}")
         soup = BeautifulSoup(page.content, 'html.parser')
@@ -76,5 +74,6 @@ def startScrap(url):
         page_number += 1
 
     df = DataFrame({"شناسه" : IDs, "کنونیکال" : links, "نام محصول" : titles, "قیمت" : prices, "تاریخ گزارش" : dates, "لینک پیشفرض" : default_links})
-    df.style.set_properties(**{'text-align': 'center'}).to_excel(f"./public/files/{file_name}.xlsx", sheet_name="sheet1", index=False)
-    return {"productsCount" : len(links), "pagesCount" : page_number, "fileName" : f"{file_name}.xlsx"}
+    df.style.set_properties(**{'text-align': 'center'}).to_excel(f"{file_name}.xlsx", sheet_name="sheet1", index=False)
+    os.replace(file_name + ".xlsx", "./public/files/"+ file_name +".xlsx")
+    return {"productsCount" : len(links), "pagesCount" : page_number, "fileName" : file_name + ".xlsx"}

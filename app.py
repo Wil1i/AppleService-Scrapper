@@ -1,23 +1,29 @@
 from flask import Flask, request
 from flask_cors import CORS
-import category, search
+from category import startScrap as cScrap
+from search import startScrap as sScrap
 
 app = Flask(__name__)
 CORS(app)
 
-@app.post("/export/search")
+@app.get("/scrapper/")
+def home():
+    print("HomePage")
+    return "<h1>Hello World</h1>"
+
+@app.post("/scrapper/export/search")
 def search():
     print(1)
-    link = request.json.link
-    scrapped = search.startScrap(link)
+    link = request.json['link']
+    scrapped = sScrap(link)
     return scrapped
 
-@app.post("/export/category")
+@app.post("/scrapper/export/category")
 def category():
-    link = request.json.link
-    scrapped = category.startScrap(link)
+    link = request.json['link']
+    scrapped = cScrap(link)
     return scrapped
 
-@app.get("/connection/check")
+@app.get("/scrapper/connection/check")
 def check_connection():
     return {"ok" : True}

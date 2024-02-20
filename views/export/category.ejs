@@ -26,13 +26,13 @@
         var downloadFile = document.getElementById("downloadFile")
 
         async function startExport () {
-            const scrapped = await axios.post("http://<%= ip %>/export/category", {
+            const scrapped = await axios.post("http://<%= ip %>/scrapper/export/category", {
                 link : link.value
             })
-
-            productCount.innerHTML = `تعداد محصولات یافت شده : ${scrapped.productsCount}`
-            pageCount.innerHTML = `تعداد صفحه های یافت شده : ${scrapped.pagesCount}`
-            downloadFile.href = `/files/${scrapped.fileName}`
+		console.log(scrapped)
+            productCount.innerHTML = `تعداد محصولات یافت شده : ${scrapped.data.productsCount}`
+            pageCount.innerHTML = `تعداد صفحه های یافت شده : ${scrapped.data.pagesCount}`
+            downloadFile.href = `/files/${scrapped.data.fileName}`
         }
     </script>
 </body>
