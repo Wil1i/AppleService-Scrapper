@@ -29,13 +29,17 @@
 
         async function startExport () {
 	    statusTag.innerHTML = "درحال انجام کار..."
-            const scrapped = await axios.post("http://<%= ip %>/scrapper/export/category", {
-                link : link.value
-            })
-	    statusTag.innerHTML = "بیکار!"
-            productCount.innerHTML = `تعداد محصولات یافت شده : ${scrapped.data.productsCount}`
-            pageCount.innerHTML = `تعداد صفحه های یافت شده : ${scrapped.data.pagesCount}`
-            downloadFile.href = `/files/${scrapped.data.fileName}`
+	    try{
+		    const scrapped = await axios.post("http://<%= ip %>/scrapper/export/category", {
+			link : link.value
+		    })
+		    statusTag.innerHTML = "بیکار!"
+		    productCount.innerHTML = `تعداد محصولات یافت شده : ${scrapped.data.productsCount}`
+		    pageCount.innerHTML = `تعداد صفحه های یافت شده : ${scrapped.data.pagesCount}`
+		    downloadFile.href = `/files/${scrapped.data.fileName}`
+            }catch(){
+		stautsTag.innerHTML = "به مشکل خوردیم!"
+	    }
         }
     </script>
 </body>
