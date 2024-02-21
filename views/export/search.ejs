@@ -37,7 +37,7 @@
 		    productCount.innerHTML = `تعداد محصولات یافت شده : ${scrapped.data.productsCount}`
 		    pageCount.innerHTML = `تعداد صفحه های یافت شده : ${scrapped.data.pagesCount}`
 		    downloadFile.href = `/files/${scrapped.data.fileName}`
-	    }catch(){
+	    }catch(e) {
 		statusTag.innerHTML = "به مشکل خوردیم!"
 	    }
         }
