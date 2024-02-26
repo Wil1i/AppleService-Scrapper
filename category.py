@@ -2,7 +2,7 @@ import requests, datetime, os
 from bs4 import BeautifulSoup
 from pandas import DataFrame
 
-def startScrap(url):
+def startScrap(url, for_index):
     # check if url entered with correct format
     if not url.startswith("https://"):
         return {ok : False, err : "لینک نامعتبر می باشد."}
@@ -58,7 +58,10 @@ def startScrap(url):
                 else:
                     prices.append("تنظیم نشده")
 
-                links.append(product_link)
+                if not for_index:
+                    links.append(product_link)
+                else:
+                    links.append(f"site://{product_link}")
                 dates.append(date)
                 titles.append(product.contents[0])
 
@@ -68,7 +71,13 @@ def startScrap(url):
             break
         page_number += 1
 
-    df = DataFrame({"شناسه" : IDs, "کنونیکال" : links, "نام محصول" : titles, "قیمت" : prices, "تاریخ گزارش" : dates, "لینک پیشفرض" : default_links})
-    df.style.set_properties(**{'text-align': 'center'}).to_excel(f"{category}.xlsx", sheet_name="sheet1", index=False)
-    os.replace(category + ".xlsx", "./public/files/"+category +".xlsx")
-    return {"productsCount" : len(links), "pagesCount" : page_number, "fileName" : category + ".xlsx"}
+    file_name = soup.title.string.split("|")[0]
+    if not for_index:
+        df = DataFrame({"شناسه" : IDs, "کنونیکال" : links, "نام محصول" : titles, "قیمت" : prices, "تاریخ گزارش" : dates, "لینک پیشفرض" : default_links})
+        df.style.set_properties(**{'text-align': 'center'}).to_excel(f"{category}.xlsx", sheet_name="sheet1", index=False)
+        os.replace(category + ".xlsx", "./public/files/"+file_name+".xlsx")
+    else:
+        df = DataFrame({"شناسه" : IDs, "کنونیکال" : links, "نام محصول" : titles})
+        df.style.set_properties(**{'text-align': 'center'}).to_excel(f"{category}.xlsx", sheet_name="sheet1", index=False)
+        os.replace(category + ".xlsx", "./public/files/"+file_name+".xlsx")
+    return {"productsCount" : len(links), "pagesCount" : page_number, "fileName" : file_name + ".xlsx"}

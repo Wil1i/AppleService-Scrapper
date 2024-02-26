@@ -2,7 +2,7 @@ import requests, datetime, os
 from bs4 import BeautifulSoup
 from pandas import DataFrame
 
-def startScrap(url):
+def startScrap(url, for_index):
     # check if url entered with correct format
     if not url.startswith("https://"):
         return {"ok" : False, "err" : "لینک وارد شده نامعتبر می‌باشد."}
@@ -32,7 +32,9 @@ def startScrap(url):
 
         # Finding search query
         if file_name == "":
-            file_name = soup.find('span', attrs={'class' : 'lighter'}).contents[0].strip()
+            # file_name = soup.find('h1', attrs={'class' : 'page-heading  product-listing'})
+            # file_name = file_name.find('span', attrs={'class' : 'lighter'}).contents[0]
+            file_name = "test"
             file_name = f"جستجو بر اساس {file_name}"
 
         # product_container = soup.find('div', attrs={'class' : "row"})
@@ -63,7 +65,10 @@ def startScrap(url):
                 else:
                     prices.append("تنظیم نشده")
 
-                links.append(product_link)
+                if not for_index:
+                    links.append(product_link)
+                else:
+                    links.append(f"site://{product_link}")
                 dates.append(date)
                 titles.append(product.contents[0])
 
@@ -73,7 +78,12 @@ def startScrap(url):
             break
         page_number += 1
 
-    df = DataFrame({"شناسه" : IDs, "کنونیکال" : links, "نام محصول" : titles, "قیمت" : prices, "تاریخ گزارش" : dates, "لینک پیشفرض" : default_links})
-    df.style.set_properties(**{'text-align': 'center'}).to_excel(f"{file_name}.xlsx", sheet_name="sheet1", index=False)
-    os.replace(file_name + ".xlsx", "./public/files/"+ file_name +".xlsx")
+    if not for_index:
+        df = DataFrame({"شناسه" : IDs, "کنونیکال" : links, "نام محصول" : titles, "قیمت" : prices, "تاریخ گزارش" : dates, "لینک پیشفرض" : default_links})
+        df.style.set_properties(**{'text-align': 'center'}).to_excel(f"{file_name}.xlsx", sheet_name="sheet1", index=False)
+        os.replace(file_name + ".xlsx", "./public/files/"+ file_name +".xlsx")
+    else:
+        df = DataFrame({"شناسه" : IDs, "کنونیکال" : links, "نام محصول" : titles})
+        df.style.set_properties(**{'text-align': 'center'}).to_excel(f"{file_name}.xlsx", sheet_name="sheet1", index=False)
+        os.replace(file_name + ".xlsx", "./public/files/"+ file_name +".xlsx")
     return {"productsCount" : len(links), "pagesCount" : page_number, "fileName" : file_name + ".xlsx"}

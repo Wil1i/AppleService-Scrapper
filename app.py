@@ -13,15 +13,16 @@ def home():
 
 @app.post("/scrapper/export/search")
 def search():
-    print(1)
+    for_index = request.json['index']
     link = request.json['link']
-    scrapped = sScrap(link)
+    scrapped = sScrap(link, for_index)
     return scrapped
 
 @app.post("/scrapper/export/category")
 def category():
+    for_index = request.json['index']
     link = request.json['link']
-    scrapped = cScrap(link)
+    scrapped = cScrap(link, for_index)
     return scrapped
 
 @app.get("/scrapper/connection/check")

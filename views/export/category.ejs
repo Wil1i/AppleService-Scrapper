@@ -13,8 +13,11 @@
             <p class="info" dir="rtl" id="page-count">تعداد صفحات یافت شده : -</p>
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
+            <button class="btn" style="width: 200px" onclick="startExport(true)">خروجی ایندکس</button>
+            <button class="btn" style="width: 200px" onclick="startExport(false)">شروع خروجی گرفتن</button>
+        </div>
+	<div style="display: flex; justify-content: center; align-items: center;">
             <a href="" id="downloadFile" download> <button class="btn" style="width: 200px;" aria-disabled="true" id="excel">دانلود فایل اکسل</button> </a>
-            <button class="btn" style="width: 200px" onclick="startExport()">شروع خروجی گرفتن</button>
         </div>
     </div>
 
@@ -27,11 +30,12 @@
         var downloadFile = document.getElementById("downloadFile")
 	var statusTag = document.getElementById("status")
 
-        async function startExport () {
+        async function startExport (forIndex) {
 	    statusTag.innerHTML = "درحال انجام کار..."
 	    try{
 		    const scrapped = await axios.post("http://<%= ip %>/scrapper/export/category", {
-			link : link.value
+			link : link.value,
+			index : forIndex
 		    })
 		    statusTag.innerHTML = "بیکار!"
 		    productCount.innerHTML = `تعداد محصولات یافت شده : ${scrapped.data.productsCount}`
