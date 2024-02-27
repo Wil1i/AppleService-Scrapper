@@ -2,6 +2,7 @@
 <html lang="fa">
 <%- include("../templates/head.ejs") %>
 <body>
+    <%- include("../templates/loader.ejs") %>
     <%- include("../templates/header.ejs") %>
     <%- include("../templates/flash.ejs") %>
 
@@ -29,20 +30,24 @@
         var excelBtn = document.getElementById("excel")
         var downloadFile = document.getElementById("downloadFile")
 	var statusTag = document.getElementById("status")
+	var loader = document.getElementById("loader-handler")
 
         async function startExport (forIndex) {
 	    statusTag.innerHTML = "درحال انجام کار..."
+	    loader.style.display = "block"
 	    try{
 		    const scrapped = await axios.post("http://<%= ip %>/scrapper/export/search", {
 			link : link.value,
 			index : forIndex
 		    })
 		    statusTag.innerHTML = "بیکار!"
+		    loader.style.display = "none"
 		    productCount.innerHTML = `تعداد محصولات یافت شده : ${scrapped.data.productsCount}`
 		    pageCount.innerHTML = `تعداد صفحه های یافت شده : ${scrapped.data.pagesCount}`
 		    downloadFile.href = `/files/${scrapped.data.fileName}`
 	    }catch(e) {
 		statusTag.innerHTML = "به مشکل خوردیم!"
+		loader.style.display = "none"
 	    }
         }
     </script>
