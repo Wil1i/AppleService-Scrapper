@@ -51,21 +51,25 @@ stopWorking.addEventListener("click", async () => {
 });
 
 resetWorkHours.addEventListener("click", async () => {
-  try {
-    const result = await axios.post(
-      `/duty/admin/${codePersoneli.textContent}?action=resetWorkHours`
-    );
-    if (result.data == true) location.reload();
-  } catch (error) {}
+  if (confirm("کاربر مورد نظر حذف شود ؟")) {
+	  try {
+	    const result = await axios.post(
+	      `/duty/admin/${codePersoneli.textContent}?action=resetWorkHours`
+	    );
+	    if (result.data == true) location.reload();
+	  } catch (error) {}
+  }
 });
 
 deleteHistory.addEventListener("click", async () => {
-  try {
-    const result = await axios.post(
-      `/duty/admin/${codePersoneli.textContent}?action=deleteHistory`
-    );
-    if (result.data == true) location.reload();
-  } catch (error) {}
+  if (confirm("کاربر مورد نظر حذف شود ؟")) {
+	  try {
+	    const result = await axios.post(
+	      `/duty/admin/${codePersoneli.textContent}?action=deleteHistory`
+	    );
+	    if (result.data == true) location.reload();
+	  } catch (error) {}
+  }
 });
 
 deleteUser.addEventListener("click", async () => {
