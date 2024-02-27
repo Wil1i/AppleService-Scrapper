@@ -51,7 +51,7 @@ stopWorking.addEventListener("click", async () => {
 });
 
 resetWorkHours.addEventListener("click", async () => {
-  if (confirm("کاربر مورد نظر حذف شود ؟")) {
+  if (confirm("ساعات کاری پاک شود ؟")) {
 	  try {
 	    const result = await axios.post(
 	      `/duty/admin/${codePersoneli.textContent}?action=resetWorkHours`
@@ -62,7 +62,7 @@ resetWorkHours.addEventListener("click", async () => {
 });
 
 deleteHistory.addEventListener("click", async () => {
-  if (confirm("کاربر مورد نظر حذف شود ؟")) {
+  if (confirm("تاریخچه پاک شود ؟")) {
 	  try {
 	    const result = await axios.post(
 	      `/duty/admin/${codePersoneli.textContent}?action=deleteHistory`
